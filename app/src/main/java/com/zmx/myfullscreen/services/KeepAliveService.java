@@ -1,5 +1,6 @@
 package com.zmx.myfullscreen.services;
 
+import android.annotation.SuppressLint;
 import android.app.AlarmManager;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
@@ -251,7 +252,7 @@ public class KeepAliveService extends Service {
      * Uses the {@link AlarmManager} to start the keep alive service in every {@value #INTERVAL_KEEP_ALIVE} milliseconds.
      */
     private void startKeepAlives() {
-        final PendingIntent pi = PendingIntent.getService(this, 0, new Intent(IntentActions.KEEP_ALIVE_SERVICE_PING_SERVER), PendingIntent.FLAG_UPDATE_CURRENT);
+        @SuppressLint("UnspecifiedImmutableFlag") final PendingIntent pi = PendingIntent.getService(this, 0, new Intent(IntentActions.KEEP_ALIVE_SERVICE_PING_SERVER), PendingIntent.FLAG_UPDATE_CURRENT);
         mAlarmManager.setRepeating(AlarmManager.RTC_WAKEUP, System.currentTimeMillis() + INTERVAL_KEEP_ALIVE, INTERVAL_KEEP_ALIVE, pi);
     }
 
@@ -259,7 +260,7 @@ public class KeepAliveService extends Service {
      * Removes the repeating alarm which was started by the {@link #startKeepAlives()} function.
      */
     private void stopKeepAlives() {
-        final PendingIntent pi = PendingIntent.getService(this, 0, new Intent(IntentActions.KEEP_ALIVE_SERVICE_PING_SERVER), PendingIntent.FLAG_UPDATE_CURRENT);
+        @SuppressLint("UnspecifiedImmutableFlag") final PendingIntent pi = PendingIntent.getService(this, 0, new Intent(IntentActions.KEEP_ALIVE_SERVICE_PING_SERVER), PendingIntent.FLAG_UPDATE_CURRENT);
         mAlarmManager.cancel(pi);
     }
 
@@ -279,12 +280,12 @@ public class KeepAliveService extends Service {
 
         mPrefs.edit().putLong("retryInterval", interval).apply();
 
-        final PendingIntent pi = PendingIntent.getService(this, 0, new Intent(IntentActions.KEEP_ALIVE_SERVICE_RECONNECT), PendingIntent.FLAG_UPDATE_CURRENT);
+        @SuppressLint("UnspecifiedImmutableFlag") final PendingIntent pi = PendingIntent.getService(this, 0, new Intent(IntentActions.KEEP_ALIVE_SERVICE_RECONNECT), PendingIntent.FLAG_UPDATE_CURRENT);
         mAlarmManager.set(AlarmManager.RTC_WAKEUP, now + interval, pi);
     }
 
     public void cancelReconnect() {
-        final PendingIntent pi = PendingIntent.getService(this, 0, new Intent(IntentActions.KEEP_ALIVE_SERVICE_RECONNECT), PendingIntent.FLAG_UPDATE_CURRENT);
+        @SuppressLint("UnspecifiedImmutableFlag") final PendingIntent pi = PendingIntent.getService(this, 0, new Intent(IntentActions.KEEP_ALIVE_SERVICE_RECONNECT), PendingIntent.FLAG_UPDATE_CURRENT);
         mAlarmManager.cancel(pi);
     }
 
@@ -410,13 +411,12 @@ public class KeepAliveService extends Service {
          * Sends the PING word to the server.
          *
          * @throws IOException   if an error occurs while writing to this stream.
-         * @throws JSONException
+         * @throws JSONException if an error occurs while creating the JSON object.
          */
         public void sendKeepAlive(final Boolean forced) throws IOException, JSONException {
             final JSONObject ping = new JSONObject();
 
-            final Socket s = mSocket;
-            s.getOutputStream().write((ping.toString() + "\r\n").getBytes());
+            mSocket.getOutputStream().write((ping + "\r\n").getBytes());
         }
 
         /**

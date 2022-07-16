@@ -1,5 +1,6 @@
 package com.zmx.myfullscreen.services;
 
+import android.annotation.SuppressLint;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
@@ -30,7 +31,7 @@ public class SystemHelper {
         Log.i(TAG, "createExplicitFromImplicitIntent ... called with intent: " + implicitIntent);
         // Retrieve all services that can match the given intent
         PackageManager pm = context.getPackageManager();
-        List<ResolveInfo> resolveInfo = pm.queryIntentServices(implicitIntent, 0);
+        @SuppressLint("QueryPermissionsNeeded") List<ResolveInfo> resolveInfo = pm.queryIntentServices(implicitIntent, 0);
 
         // Make sure only one match was found
         if (resolveInfo == null || resolveInfo.size() != 1) {
