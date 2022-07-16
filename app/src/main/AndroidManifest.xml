@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.zmx.myfullscreen">
 
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -24,6 +25,16 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <service android:name="com.zmx.myfullscreen.services.KeepAliveService"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="com.zmx.myfullscreen.intent.action.KEEP_ALIVE_SERVICE_START" />
+                <action android:name="com.zmx.myfullscreen.intent.action.KEEP_ALIVE_SERVICE_STOP" />
+                <action android:name="com.zmx.myfullscreen.intent.action.KEEP_ALIVE_SERVICE_PING_SERVER" />
+                <action android:name="com.zmx.myfullscreen.intent.action.KEEP_ALIVE_SERVICE_RECONNECT" />
+            </intent-filter>
+        </service>
     </application>
 
 </manifest>
