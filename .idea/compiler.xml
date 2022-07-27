@@ -4,6 +4,7 @@
     <bytecodeTargetLevel target="1.7">
       <module name="MyFullScreen.app" target="11" />
       <module name="MyFullScreen.galgo" target="11" />
+      <module name="MyFullScreen.loginpage" target="11" />
       <module name="MyFullScreen.mylibrary" target="11" />
     </bytecodeTargetLevel>
   </component>

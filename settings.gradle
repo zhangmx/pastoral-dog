@@ -16,3 +16,4 @@ rootProject.name = "MyFullScreen"
 include ':app'
 include ':mylibrary'
 include ':natty'
+include ':loginpage'
