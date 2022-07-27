@@ -15,6 +15,7 @@ import android.widget.Toast
 import com.vazyme.loginpage.databinding.ActivityLoginBinding
 
 import com.vazyme.loginpage.R
+import com.zmx.androidlib.MainActivity
 
 class LoginActivity : AppCompatActivity() {
 
@@ -107,6 +108,8 @@ class LoginActivity : AppCompatActivity() {
             "$welcome $displayName",
             Toast.LENGTH_LONG
         ).show()
+
+        MainActivity.actionStart(this)
     }
 
     private fun showLoginFailed(@StringRes errorString: Int) {

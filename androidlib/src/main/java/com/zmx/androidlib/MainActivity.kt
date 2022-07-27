@@ -1,5 +1,6 @@
 package com.zmx.androidlib
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
@@ -82,5 +83,13 @@ class MainActivity : AppCompatActivity() {
     override fun onSupportNavigateUp(): Boolean {
         val navController = findNavController(R.id.nav_host_fragment_content_main)
         return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
+    }
+
+    companion object {
+        fun actionStart(context: AppCompatActivity) {
+            val intent = Intent(context, MainActivity::class.java)
+//            intent.putExtra("userName", userName)
+            context.startActivity(intent)
+        }
     }
 }
