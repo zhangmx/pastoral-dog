@@ -39,7 +39,7 @@
             </intent-filter>
         </service>
 
-        <service android:name="com.inaka.galgo.GalgoService" />
+<!--        <service android:name="com.inaka.galgo.GalgoService" />-->
     </application>
 
 </manifest>

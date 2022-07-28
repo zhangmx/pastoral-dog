@@ -12,9 +12,10 @@ dependencyResolutionManagement {
         mavenCentral()
     }
 }
-rootProject.name = "MyFullScreen"
+rootProject.name = "PastoralDog"
 include ':app'
 include ':mylibrary'
 include ':natty'
 include ':loginpage'
 include ':androidlib'
+include ':libkotlin'
