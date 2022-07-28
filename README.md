@@ -5,3 +5,10 @@
 ## 参考：
 
 > https://androiderrors.com/android-how-to-run-a-socket-in-a-long-lives-background-thread/
+
+## IDEA 插件：
+
+> scrcpy
+> Kotlin
+> Bazel
+> GitHub Copilot
