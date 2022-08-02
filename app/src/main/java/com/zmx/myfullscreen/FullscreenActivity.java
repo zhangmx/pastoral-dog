@@ -5,20 +5,27 @@ import android.annotation.SuppressLint;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
-import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.WindowInsets;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.zmx.myfullscreen.databinding.ActivityFullscreenBinding;
+
+import java.util.Arrays;
+import java.util.List;
 
 /**
  * An example full-screen activity that shows and hides the system UI (i.e.
@@ -101,6 +108,8 @@ public class FullscreenActivity extends AppCompatActivity {
     };
     private ActivityFullscreenBinding binding;
 
+    private List<String> demoFruitList = Arrays.asList("banana", "apple", "orange", "grape", "strawberry");
+
     @SuppressLint("ClickableViewAccessibility")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -122,6 +131,11 @@ public class FullscreenActivity extends AppCompatActivity {
         // operations to prevent the jarring behavior of controls going away
         // while interacting with the UI.
         binding.dummyButton.setOnTouchListener(mDelayHideTouchListener);
+
+        GridLayoutManager gridLayoutManager = new GridLayoutManager(this, 2);
+        binding.recyclerView.setLayoutManager(gridLayoutManager);
+        binding.recyclerView.setAdapter(new DemoFruitAdapter(demoFruitList));
+
     }
 
     @Override
@@ -200,5 +214,46 @@ public class FullscreenActivity extends AppCompatActivity {
     private void delayedHide(int delayMillis) {
         mHideHandler.removeCallbacks(mHideRunnable);
         mHideHandler.postDelayed(mHideRunnable, delayMillis);
+    }
+
+
+    private static class DemoFruitAdapter extends RecyclerView.Adapter {
+
+        private List<String> fruitList;
+
+        public DemoFruitAdapter(List<String> demoFruitList) {
+            fruitList = demoFruitList;
+        }
+
+        static class DemoFruitViewHolder extends RecyclerView.ViewHolder {
+            TextView fruit;
+            public DemoFruitViewHolder(View itemView) {
+                super(itemView);
+                fruit = itemView.findViewById(R.id.fruit_name);
+            }
+        }
+
+
+        @NonNull
+        @Override
+        public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+
+            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.fruit_item, parent, false);
+
+            return new DemoFruitViewHolder(view);
+        }
+
+        @Override
+        public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
+            String fruit = fruitList.get(position);
+            DemoFruitViewHolder demoFruitViewHolder = (DemoFruitViewHolder) holder;
+            demoFruitViewHolder.fruit.setText(fruit);
+
+        }
+
+        @Override
+        public int getItemCount() {
+            return fruitList.size();
+        }
     }
 }
