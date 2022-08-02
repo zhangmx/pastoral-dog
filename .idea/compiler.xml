@@ -4,6 +4,7 @@
     <bytecodeTargetLevel target="1.7">
       <module name="PastoralDog.androidlib" target="11" />
       <module name="PastoralDog.app" target="11" />
+      <module name="PastoralDog.kotlinlibrary" target="11" />
       <module name="PastoralDog.loginpage" target="11" />
       <module name="PastoralDog.mylibrary" target="11" />
     </bytecodeTargetLevel>
