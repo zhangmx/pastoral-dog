@@ -3,4 +3,7 @@
     <string name="dummy_button">Dummy Button</string>
     <string name="dummy_content">DUMMY\nCONTENT</string>
     <string name="textview">TextView</string>
+    <string name="backup">Backup</string>
+    <string name="delete">Delete</string>
+    <string name="settings">Settings</string>
 </resources>

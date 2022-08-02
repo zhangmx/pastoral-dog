@@ -7,14 +7,6 @@
     android:theme="@style/ThemeOverlay.MyFullScreen.FullscreenContainer"
     tools:context=".FullscreenActivity">
 
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:background="@color/purple_500"
-        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-        />
-
     <!-- The primary full-screen view. This can be replaced with whatever view
          is needed to present your content, e.g. VideoView, SurfaceView,
          TextureView, etc. -->
@@ -42,6 +34,14 @@
         android:layout_height="match_parent"
         android:fitsSystemWindows="true">
 
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@color/purple_500"
+            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+            />
+
         <LinearLayout
             android:id="@+id/fullscreen_content_controls"
             style="@style/Widget.Theme.MyFullScreen.ButtonBar.Fullscreen"
@@ -50,6 +50,7 @@
             android:layout_gravity="bottom|center_horizontal"
             android:orientation="horizontal"
             tools:ignore="UselessParent">
+
 
             <Button
                 android:id="@+id/dummy_button"
