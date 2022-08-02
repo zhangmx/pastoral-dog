@@ -62,7 +62,7 @@ class ExampleUnitTest {
     @Test
     fun `test coroutineScope`() {
         runBlocking {
-            coroutineScope{
+            coroutineScope {
                 launch {
                     for (i in 1..10) {
                         println("i: $i")
@@ -100,5 +100,79 @@ class ExampleUnitTest {
         println("result: $result")
     }
 
+    @Test
+    fun `coroutine with result withContext order`() {
+        val result = runBlocking {
+
+            val start = System.currentTimeMillis()
+
+            val result1 = withContext(Dispatchers.Default) {
+                delay(1000)
+                10
+            }
+
+            val result2 = withContext(Dispatchers.Default) {
+                delay(1000)
+                20
+            }
+
+            val end = System.currentTimeMillis()
+            println("cost time: ${end - start}")
+            result1 + result2
+        }
+        println("result: $result")
+    }
+
+    @Test
+    fun `coroutine with result async order`() {
+        val result = runBlocking {
+
+            val start = System.currentTimeMillis()
+
+            val result1 = async {
+                delay(1000)
+                10
+            }.await()
+
+            val result2 = async {
+                delay(1000)
+                20
+            }.await()
+
+            val end = System.currentTimeMillis()
+            println("cost time: ${end - start}")
+            result1 + result2
+        }
+        println("result: $result")
+    }
+
+    @Test
+    fun `coroutine with result async order await same time`() {
+        val result = runBlocking {
+
+            val start = System.currentTimeMillis()
+
+            val result1 = async {
+                withContext(Dispatchers.Default) {
+                    delay(1000)
+                    10
+                }
+            }
+
+            val result2 = async {
+                withContext(Dispatchers.Default) {
+                    delay(1000)
+                    20
+                }
+            }
+
+            val result = result1.await() + result2.await()
+
+            val end = System.currentTimeMillis()
+            println("cost time: ${end - start}")
+            result
+        }
+        println("result: $result")
+    }
 
 }
