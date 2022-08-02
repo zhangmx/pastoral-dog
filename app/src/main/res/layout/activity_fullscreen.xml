@@ -45,7 +45,7 @@
 
     </com.google.android.material.card.MaterialCardView>
 
-    <FrameLayout
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:fitsSystemWindows="true">
@@ -107,6 +107,6 @@
             android:src="@android:drawable/btn_star_big_on" />
 
 
-    </FrameLayout>
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
 </FrameLayout>
