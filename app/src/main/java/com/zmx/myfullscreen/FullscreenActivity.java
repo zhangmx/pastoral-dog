@@ -74,34 +74,26 @@ public class FullscreenActivity extends AppCompatActivity {
         }
     };
     private boolean mVisible;
-    private final Runnable mHideRunnable = new Runnable() {
-        @Override
-        public void run() {
-            hide();
-        }
-    };
+    private final Runnable mHideRunnable = this::hide;
     /**
      * Touch listener to use for in-layout UI controls to delay hiding the
      * system UI. This is to prevent the jarring behavior of controls going away
      * while interacting with activity UI.
      */
-    private final View.OnTouchListener mDelayHideTouchListener = new View.OnTouchListener() {
-        @Override
-        public boolean onTouch(View view, MotionEvent motionEvent) {
-            switch (motionEvent.getAction()) {
-                case MotionEvent.ACTION_DOWN:
-                    if (AUTO_HIDE) {
-                        delayedHide(AUTO_HIDE_DELAY_MILLIS);
-                    }
-                    break;
-                case MotionEvent.ACTION_UP:
-                    view.performClick();
-                    break;
-                default:
-                    break;
-            }
-            return false;
+    private final View.OnTouchListener mDelayHideTouchListener = (view, motionEvent) -> {
+        switch (motionEvent.getAction()) {
+            case MotionEvent.ACTION_DOWN:
+                if (AUTO_HIDE) {
+                    delayedHide(AUTO_HIDE_DELAY_MILLIS);
+                }
+                break;
+            case MotionEvent.ACTION_UP:
+                view.performClick();
+                break;
+            default:
+                break;
         }
+        return false;
     };
     private ActivityFullscreenBinding binding;
 
@@ -113,17 +105,14 @@ public class FullscreenActivity extends AppCompatActivity {
         binding = ActivityFullscreenBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
+        setSupportActionBar(binding.toolbar);
+
         mVisible = true;
         mControlsView = binding.fullscreenContentControls;
         mContentView = binding.fullscreenContent;
 
         // Set up the user interaction to manually show or hide the system UI.
-        mContentView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                toggle();
-            }
-        });
+        mContentView.setOnClickListener(view -> toggle());
 
         // Upon interacting with UI controls, delay any scheduled hide()
         // operations to prevent the jarring behavior of controls going away
