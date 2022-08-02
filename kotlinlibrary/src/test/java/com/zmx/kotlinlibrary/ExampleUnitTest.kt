@@ -1,9 +1,8 @@
 package com.zmx.kotlinlibrary
 
 import kotlinx.coroutines.*
+import org.junit.Assert.assertEquals
 import org.junit.Test
-
-import org.junit.Assert.*
 
 /**
  * Example local unit test, which will execute on the development machine (host).
@@ -91,10 +90,10 @@ class ExampleUnitTest {
     @Test
     fun `coroutine with result`() {
         val result = runBlocking {
-            val result = async {
+            val result = withContext(Dispatchers.Default) {
                 delay(1000)
                 "hello"
-            }.await()
+            }
             println("result: $result")
             result
         }
