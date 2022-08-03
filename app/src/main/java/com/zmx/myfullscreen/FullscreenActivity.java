@@ -23,6 +23,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.zmx.myfullscreen.databinding.ActivityFullscreenBinding;
+import com.zmx.myfullscreen.observer.MainObserver;
 
 import java.util.Arrays;
 import java.util.List;
@@ -135,6 +136,17 @@ public class FullscreenActivity extends AppCompatActivity {
         GridLayoutManager gridLayoutManager = new GridLayoutManager(this, 2);
         binding.recyclerView.setLayoutManager(gridLayoutManager);
         binding.recyclerView.setAdapter(new DemoFruitAdapter(demoFruitList));
+
+        binding.recyclerView.setOnTouchListener((v, event) -> {
+            if (event.getAction() == MotionEvent.ACTION_DOWN) {
+                if (AUTO_HIDE) {
+                    delayedHide(AUTO_HIDE_DELAY_MILLIS);
+                }
+            }
+            return false;
+        });
+
+        getLifecycle().addObserver(new MainObserver());
 
     }
 
