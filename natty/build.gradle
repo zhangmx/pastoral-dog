@@ -8,6 +8,6 @@ java {
 }
 
 dependencies {
-    implementation 'netty:netty-all:4.1.0.Final'
+    implementation 'io.netty:netty-all:4.1.79.Final'
     testImplementation 'junit:junit:4.13.2'
 }
