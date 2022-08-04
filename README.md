@@ -5,6 +5,7 @@
 ## 参考：
 
 > https://androiderrors.com/android-how-to-run-a-socket-in-a-long-lives-background-thread/
+> https://ktor.io/docs/servers-raw-sockets.html
 
 ## IDEA 插件：
 

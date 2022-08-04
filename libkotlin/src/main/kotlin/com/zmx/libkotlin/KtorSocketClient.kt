@@ -6,6 +6,7 @@ import io.ktor.utils.io.*
 import kotlinx.coroutines.*
 import kotlin.system.*
 
+//https://ktor.io/docs/servers-raw-sockets.html
 fun main(args: Array<String>) {
     runBlocking {
         val selectorManager = SelectorManager(Dispatchers.IO)

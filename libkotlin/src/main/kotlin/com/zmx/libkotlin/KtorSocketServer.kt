@@ -14,14 +14,26 @@ fun main(args: Array<String>) {
         while (true) {
             val socket = serverSocket.accept()
             println("Accepted $socket")
+            val receiveChannel = socket.openReadChannel()
+            val sendChannel = socket.openWriteChannel(autoFlush = true)
             launch {
-                val receiveChannel = socket.openReadChannel()
-                val sendChannel = socket.openWriteChannel(autoFlush = true)
                 sendChannel.writeStringUtf8("Please enter your name\n")
                 try {
                     while (true) {
                         val name = receiveChannel.readUTF8Line()
                         sendChannel.writeStringUtf8("Hello, $name!\n")
+                    }
+                } catch (e: Throwable) {
+                    socket.close()
+                }
+            }
+            // server push data to client
+            launch {
+                try {
+                    while (true) {
+                        delay(1000)
+                        val randomInt = (Math.random() * 100).toInt()
+                        sendChannel.writeStringUtf8("Hello, $randomInt!\n")
                     }
                 } catch (e: Throwable) {
                     socket.close()
