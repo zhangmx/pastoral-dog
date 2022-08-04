@@ -9,5 +9,8 @@ java {
 }
 
 dependencies {
+    implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.7.10")
+    implementation("io.ktor:ktor-network:2.0.2")
+    implementation("ch.qos.logback:logback-classic:1.2.11")
     testImplementation 'junit:junit:4.13.2'
 }
