@@ -8,6 +8,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.ActivityManager;
+import android.content.Context;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
@@ -228,10 +230,24 @@ public class FullscreenActivity extends AppCompatActivity {
         mHideHandler.postDelayed(mHideRunnable, delayMillis);
     }
 
+    /**
+     * @param serviceClass Class name of Service
+     * @return - boolean indicating running status of Service
+     */
+    public static boolean isServiceRunning(Context context, Class<?> serviceClass) {
+        ActivityManager manager = (ActivityManager) context.getSystemService(Context.ACTIVITY_SERVICE);
+        for (ActivityManager.RunningServiceInfo service : manager.getRunningServices(Integer.MAX_VALUE)) {
+            if (serviceClass.getName().equals(service.service.getClassName())) {
+                return true;
+            }
+        }
+        return false;
+    }
 
-    private static class DemoFruitAdapter extends RecyclerView.Adapter {
 
-        private List<String> fruitList;
+    private static class DemoFruitAdapter extends RecyclerView.Adapter<DemoFruitAdapter.DemoFruitViewHolder> {
+
+        private final List<String> fruitList;
 
         public DemoFruitAdapter(List<String> demoFruitList) {
             fruitList = demoFruitList;
@@ -248,7 +264,7 @@ public class FullscreenActivity extends AppCompatActivity {
 
         @NonNull
         @Override
-        public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        public DemoFruitViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
             View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.fruit_item, parent, false);
 
@@ -256,11 +272,9 @@ public class FullscreenActivity extends AppCompatActivity {
         }
 
         @Override
-        public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
+        public void onBindViewHolder(@NonNull DemoFruitViewHolder holder, int position) {
             String fruit = fruitList.get(position);
-            DemoFruitViewHolder demoFruitViewHolder = (DemoFruitViewHolder) holder;
-            demoFruitViewHolder.fruit.setText(fruit);
-
+            holder.fruit.setText(fruit);
         }
 
         @Override
