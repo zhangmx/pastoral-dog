@@ -32,7 +32,7 @@ testing:
 
 -[ ] try multi services 
 
-## background processing (not recommended)
+## background processing (not recommended for short-term)
 
 https://github.com/AmalH/android-background-processing-example
 ```log
