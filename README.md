@@ -32,6 +32,13 @@ testing:
 
 -[ ] try multi services 
 
+## background processing (not recommended for short-term)
+
+https://github.com/AmalH/android-background-processing-example
+```log
+2022-08-08 08:31:47.933 2914-2914/amalhichri.androidprojects.com.backgroundprocessingsample W/JobInfo: Requested interval +1s500ms for job 1 is too small; raising to +15m0s0ms
+2022-08-08 08:31:47.933 2914-2914/amalhichri.androidprojects.com.backgroundprocessingsample W/JobInfo: Requested flex +1s500ms for job 1 is too small; raising to +5m0s0ms
+```
 
 ## nice IDEA plugins：
 
