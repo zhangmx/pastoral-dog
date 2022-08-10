@@ -9,6 +9,14 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.PastoralDog">
+        <service
+            android:name=".services.MyIntentService"
+            android:exported="false"></service>
+        <service
+            android:name=".services.MyService"
+            android:enabled="true"
+            android:exported="true" />
+
         <activity
             android:name=".MainActivity"
             android:exported="true"
