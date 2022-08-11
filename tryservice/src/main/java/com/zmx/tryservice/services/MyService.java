@@ -88,7 +88,7 @@ public class MyService extends Service {
     @Override
     public void onDestroy() {
         super.onDestroy();
-        Log.i("MyService", "onDestroy Called.");
+        Log.e("MyService", "onDestroy Called.");
     }
 
     public void doWork(String message) {
@@ -153,7 +153,7 @@ public class MyService extends Service {
             }
             // Stop the service using the startId, so that we don't stop
             // the service in the middle of handling another job
-            stopSelf(msg.arg1);
+//            stopSelf(msg.arg1);
         }
     }
 

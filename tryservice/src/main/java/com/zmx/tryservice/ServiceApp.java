@@ -24,6 +24,7 @@ public class ServiceApp extends Application {
 
         Log.e("ServiceApp", "onCreate");
 //        ContextCompat.startForegroundService(this, new Intent(this, MyService.class));
+        startService(new Intent(this, MyService.class));
 //        ContextCompat.startForegroundService(this, new Intent(this, MyIntentService.class));
     }
 
