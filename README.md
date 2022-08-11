@@ -6,6 +6,8 @@ This is a Android project, used to learn Android basic knowledge.
 
 > https://androiderrors.com/android-how-to-run-a-socket-in-a-long-lives-background-thread/
 > https://ktor.io/docs/servers-raw-sockets.html
+> https://guides.codepath.com/android/managing-threads-and-custom-services#stopping-the-handlerthread
+
 
 ## other projects:
 
