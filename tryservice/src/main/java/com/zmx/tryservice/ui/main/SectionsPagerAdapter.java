@@ -1,6 +1,7 @@
 package com.zmx.tryservice.ui.main;
 
 import android.content.Context;
+import android.util.Log;
 
 import androidx.annotation.Nullable;
 import androidx.annotation.StringRes;
@@ -30,7 +31,13 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
     public Fragment getItem(int position) {
         // getItem is called to instantiate the fragment for the given page.
         // Return a PlaceholderFragment (defined as a static inner class below).
-        return PlaceholderFragment.newInstance(position + 1);
+        Log.d("SectionsPagerAdapter", "getItem: " + position);
+        if (position == 0) {
+            return BlankFragment.newInstance();
+        } else {
+            return PlaceholderFragment.newInstance(position + 1);
+        }
+//        return PlaceholderFragment.newInstance(position + 1);
     }
 
     @Nullable

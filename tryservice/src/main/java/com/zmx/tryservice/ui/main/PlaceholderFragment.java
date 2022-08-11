@@ -74,30 +74,14 @@ public class PlaceholderFragment extends Fragment {
         View root = binding.getRoot();
 
         final TextView textView = binding.sectionLabel;
-        pageViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
-            @Override
-            public void onChanged(@Nullable String s) {
-                textView.setText(s);
-            }
-        });
+        pageViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
 
         final TextView textView2 = binding.textView;
-        pageViewModel.getText2().observe(getViewLifecycleOwner(), new Observer<String>() {
-            @Override
-            public void onChanged(@Nullable String s) {
-                textView2.setText(s);
-            }
-        });
+        pageViewModel.getText2().observe(getViewLifecycleOwner(), textView2::setText);
 
         binding.button.setOnClickListener((view)->{
             Messenger messenger = new Messenger(handler);
             MyIntentService.startActionBaz(getContext(), "hello","world", messenger);
-
-//            Intent number5 = new Intent(getApplicationContext(), myIntentService.class);
-//            number5.putExtra("times", 5);
-//
-//            number5.putExtra("MESSENGER", messenger);
-//            startService(number5);
         });
 
         return root;
