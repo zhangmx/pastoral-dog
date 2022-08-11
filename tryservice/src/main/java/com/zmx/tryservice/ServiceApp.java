@@ -4,6 +4,7 @@ import android.app.ActivityManager;
 import android.app.Application;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Process;
 import android.util.Log;
 
 import androidx.core.content.ContextCompat;
@@ -15,6 +16,12 @@ public class ServiceApp extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
+
+        // log process id
+        Log.e("ServiceApp", "process id: " + Process.myPid());
+        // log thread id
+        Log.e("ServiceApp", "thread id: " + Thread.currentThread().getId());
+
         Log.e("ServiceApp", "onCreate");
 //        ContextCompat.startForegroundService(this, new Intent(this, MyService.class));
 //        ContextCompat.startForegroundService(this, new Intent(this, MyIntentService.class));

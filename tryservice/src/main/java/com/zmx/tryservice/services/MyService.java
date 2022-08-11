@@ -1,7 +1,9 @@
 package com.zmx.tryservice.services;
 
 import android.app.Service;
+import android.content.ComponentName;
 import android.content.Intent;
+import android.content.ServiceConnection;
 import android.os.Binder;
 import android.os.Bundle;
 import android.os.Handler;
@@ -18,6 +20,7 @@ import java.util.Random;
 
 public class MyService extends Service {
 
+    public static final int MSG_REGISTER_CLIENT = 1;
     private Looper mServiceLooper;
 
     private MyServiceHandler mServiceHandler;
@@ -25,6 +28,7 @@ public class MyService extends Service {
     private final IBinder mBinder = new MyServiceBinder();
 
     Random r;
+    int i;
 
     public MyService() {
         Log.e("MyService", "MyService");
@@ -87,7 +91,12 @@ public class MyService extends Service {
         Log.i("MyService", "onDestroy Called.");
     }
 
-    private final class MyServiceBinder extends Binder {
+    public void doWork(String message) {
+        Log.e("MyService", "doWork:" + message);
+        i = 0;
+    }
+
+    public final class MyServiceBinder extends Binder {
         public MyService getService() {
             return MyService.this;
         }
@@ -110,12 +119,15 @@ public class MyService extends Service {
 
             Bundle extras = msg.getData();
 
-            int times = 0, i;
+            int times = 0;
             Messenger messenger = null;
             if (extras != null) {
                 times = extras.getInt("times", 0);
                 messenger = (Messenger) extras.get("MESSENGER");
+            } else {
+                times = 10;
             }
+
             for (i = 0; i < times; i++) {
                 synchronized (this) {
                     try {
@@ -142,6 +154,18 @@ public class MyService extends Service {
             // Stop the service using the startId, so that we don't stop
             // the service in the middle of handling another job
             stopSelf(msg.arg1);
+        }
+    }
+
+    public static class MyServiceConnection implements ServiceConnection {
+        @Override
+        public void onServiceConnected(ComponentName name, IBinder service) {
+            Log.i("MyService", "onServiceConnected Called.");
+        }
+
+        @Override
+        public void onServiceDisconnected(ComponentName name) {
+
         }
     }
 }
