@@ -13,9 +13,11 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.zmx.tryservice.R;
+import com.zmx.tryservice.databinding.FragmentBlankBinding;
 
 public class BlankFragment extends Fragment {
 
+    private FragmentBlankBinding binding;
     private BlankViewModel mViewModel;
 
     public static BlankFragment newInstance() {
@@ -25,13 +27,20 @@ public class BlankFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_blank, container, false);
+        binding = FragmentBlankBinding.inflate(inflater, container, false);
+        return binding.getRoot();
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         mViewModel = new ViewModelProvider(this).get(BlankViewModel.class);
+
+
+
+
+
+
     }
 
 }
