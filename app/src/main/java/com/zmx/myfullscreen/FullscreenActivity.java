@@ -26,6 +26,7 @@ import android.widget.Toast;
 
 import com.zmx.myfullscreen.databinding.ActivityFullscreenBinding;
 import com.zmx.myfullscreen.observer.MainObserver;
+import com.zmx.myfullscreen.services.KeepAliveService;
 
 import java.util.Arrays;
 import java.util.List;
@@ -125,8 +126,7 @@ public class FullscreenActivity extends AppCompatActivity {
 
         mVisible = true;
         mControlsView = binding.fullscreenContentControls;
-        mContentView = binding.fullscreenContent;
-
+        mContentView = binding.fullscreenContent.fullscreenContent;
         // Set up the user interaction to manually show or hide the system UI.
         mContentView.setOnClickListener(view -> toggle());
 
@@ -149,6 +149,21 @@ public class FullscreenActivity extends AppCompatActivity {
         });
 
         getLifecycle().addObserver(new MainObserver());
+
+        View actionStart = binding.fullscreenContent.actionStart;
+        actionStart.setOnClickListener(v -> {
+            KeepAliveService.actionStart(this);
+        });
+
+        View actionStop = binding.fullscreenContent.actionStop;
+        actionStop.setOnClickListener(v -> {
+            KeepAliveService.actionStop(this);
+        });
+
+        View actionPing = binding.fullscreenContent.actionPing;
+        actionPing.setOnClickListener(v -> {
+            KeepAliveService.actionPing(this);
+        });
 
     }
 

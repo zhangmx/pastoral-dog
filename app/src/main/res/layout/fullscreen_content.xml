@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/fullscreen_content"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+
+    <TextView
+        android:id="@+id/fullscreen_content_text"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:keepScreenOn="true"
+        android:text="@string/dummy_content"
+        android:textColor="#37474F"
+        android:textSize="50sp"
+        android:textStyle="bold"
+        tools:layout_editor_absoluteX="-373dp"
+        tools:layout_editor_absoluteY="0dp" />
+
+    <Button
+        android:id="@+id/actionStart"
+        android:layout_width="235dp"
+        android:layout_height="69dp"
+        android:text="actionStart"
+        app:layout_constraintBottom_toBottomOf="@+id/fullscreen_content_text"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.157"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/fullscreen_content_text"
+        app:layout_constraintVertical_bias="0.18" />
+
+    <Button
+        android:id="@+id/actionStop"
+        android:layout_width="183dp"
+        android:layout_height="146dp"
+        android:text="actionStop"
+        app:layout_constraintBottom_toBottomOf="@+id/fullscreen_content_text"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.508"
+        app:layout_constraintStart_toEndOf="@+id/actionStart"
+        app:layout_constraintTop_toTopOf="@+id/fullscreen_content_text"
+        app:layout_constraintVertical_bias="0.342" />
+
+    <Button
+        android:id="@+id/actionPing"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="actionPing"
+        app:layout_constraintBottom_toTopOf="@+id/actionStop"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/actionStart"
+        app:layout_constraintTop_toTopOf="@+id/fullscreen_content_text" />
+
+    <Button
+        android:id="@+id/button4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Button"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/actionStop" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
