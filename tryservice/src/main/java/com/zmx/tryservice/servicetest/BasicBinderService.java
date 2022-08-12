@@ -75,7 +75,7 @@ public class BasicBinderService extends Service {
     }
 
     public class BasicBinder extends Binder {
-        BasicBinderService getService() {
+        public BasicBinderService getService() {
             return BasicBinderService.this;
         }
     }

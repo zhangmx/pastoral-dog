@@ -1,4 +1,4 @@
-package com.zmx.tryservice.servicetest;
+package com.zmx.tryservice.ui.servicetest;
 
 import android.content.ComponentName;
 import android.content.Context;
@@ -16,6 +16,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.zmx.tryservice.R;
+import com.zmx.tryservice.servicetest.BasicBinderService;
 
 /**
  * Created by louis383 on 2017/8/30.
