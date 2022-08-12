@@ -1,4 +1,4 @@
-package com.zmx.tryservice.servicetest;
+package com.zmx.tryservice.ui.servicetest;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,6 +10,8 @@ import android.widget.Button;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.zmx.tryservice.R;
+import com.zmx.tryservice.servicetest.ClassicService;
+import com.zmx.tryservice.servicetest.LogSenderService;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
