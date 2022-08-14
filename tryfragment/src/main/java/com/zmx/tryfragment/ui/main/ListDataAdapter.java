@@ -57,8 +57,9 @@ public class ListDataAdapter extends ListAdapter<String, ListDataAdapter.MainVie
 
     @Override
     public void onBindViewHolder(@NonNull MainViewHolder holder, int position) {
+        String currentNote = getItem(position);
 
-        holder.textView.setText(getItem(position));
+        holder.textView.setText(currentNote);
 //        holder.itemManBinding.executePendingBindings();
 
         holder.textView2.setText(String.valueOf(position));

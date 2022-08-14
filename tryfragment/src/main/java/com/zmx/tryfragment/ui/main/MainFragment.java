@@ -49,8 +49,8 @@ public class MainFragment extends Fragment {
 
         binding.message.setText("Hello World!");
 
-        MainAdapter mainAdapter = new MainAdapter(mViewModel.getList().getValue());
-
+//        MainAdapter mainAdapter = new MainAdapter(mViewModel.getList().getValue());
+        MainAdapter mainAdapter = new MainAdapter(mViewModel.getOriginalList());
         LinearLayoutManager llm = new LinearLayoutManager(getContext());
         llm.setOrientation(LinearLayoutManager.VERTICAL);
         binding.recyclerView.setLayoutManager(llm);
@@ -96,7 +96,14 @@ public class MainFragment extends Fragment {
                 liveDataAdapter.notifyDataSetChanged();
             }
         });
-
+        liveDataAdapter.setOnItemClickListener(new ListDataAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(String s) {
+                Log.e("MainFragment", "onItemClick");
+//                mViewModel.removeItemFromList(s);
+//                liveDataAdapter.notifyDataSetChanged();
+            }
+        });
 
 //        noteViewModel.getAllNotes().observe(this, new Observer<List<Note>>() {
 //            @Override

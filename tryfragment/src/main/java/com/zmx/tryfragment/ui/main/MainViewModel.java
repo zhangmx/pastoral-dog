@@ -11,6 +11,10 @@ public class MainViewModel extends ViewModel {
 
     private final MutableLiveData<List<String>> stringLiveData;
 
+    public List<String> getOriginalList() {
+        return originalList;
+    }
+
     List<String> originalList;
 
 

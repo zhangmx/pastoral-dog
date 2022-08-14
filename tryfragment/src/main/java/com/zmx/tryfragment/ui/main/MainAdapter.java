@@ -20,7 +20,7 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.MainViewHolder
 
     public MainAdapter(List<String> value) {
         mList = value;
-        setHasStableIds(true);
+//        setHasStableIds(true);
     }
 
     @NonNull
@@ -34,6 +34,7 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.MainViewHolder
         String selected = mList.get(position);
 
         holder.textView.setText(selected);
+        holder.textView2.setText(String.valueOf(position));
     }
 
     @Override
@@ -41,12 +42,12 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.MainViewHolder
         return this.mList.size();
     }
 
-    @SuppressLint("NotifyDataSetChanged")
-    public void updateUserList(final List<String> userArrayList) {
-        this.mList.clear();
-        this.mList = userArrayList;
-        notifyDataSetChanged();
-    }
+//    @SuppressLint("NotifyDataSetChanged")
+//    public void updateUserList(final List<String> userArrayList) {
+//        this.mList.clear();
+//        this.mList = userArrayList;
+//        notifyDataSetChanged();
+//    }
 
     static class MainViewHolder extends RecyclerView.ViewHolder {
 
