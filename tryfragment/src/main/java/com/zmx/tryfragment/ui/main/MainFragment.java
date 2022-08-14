@@ -1,5 +1,6 @@
 package com.zmx.tryfragment.ui.main;
 
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.os.Bundle;
@@ -16,6 +17,9 @@ import android.view.ViewGroup;
 
 import com.zmx.tryfragment.R;
 import com.zmx.tryfragment.databinding.FragmentMainBinding;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class MainFragment extends Fragment {
 
@@ -66,6 +70,41 @@ public class MainFragment extends Fragment {
             }
         });
 
+        ListDataAdapter liveDataAdapter = new ListDataAdapter();
+        binding.recyclerView2.setHasFixedSize(true);
+        binding.recyclerView2.setAdapter(liveDataAdapter);
+//        mViewModel.getList().observe(getViewLifecycleOwner(), newList -> {
+//            Log.e("MainFragment", "mViewModel observe");
+//            liveDataAdapter.submitList(null);
+//            liveDataAdapter.submitList(newList);
+////            liveDataAdapter.submitList(newList);
+//        });
+
+//        mViewModel.getList().observe(getViewLifecycleOwner(), new Observer<List<String>>() {
+//            @Override
+//            public void onChanged(List<String> strings) {
+//                Log.e("MainFragment", "mViewModel observe");
+//                liveDataAdapter.submitList(new ArrayList<>(strings));
+//            }
+//        });
+
+        mViewModel.getList().observe(getViewLifecycleOwner(), new Observer<List<String>>() {
+            @Override
+            public void onChanged(List<String> strings) {
+                Log.e("MainFragment", "mViewModel observe");
+                liveDataAdapter.submitList(strings);
+                liveDataAdapter.notifyDataSetChanged();
+            }
+        });
+
+
+//        noteViewModel.getAllNotes().observe(this, new Observer<List<Note>>() {
+//            @Override
+//            public void onChanged(@Nullable List<Note> notes) {
+//                Log.e("MainActivity", "Updating list of notes from LiveData in ViewModel");
+//                adapter.submitList(notes);
+//            }
+//        });
 
     }
 

@@ -9,7 +9,7 @@ import java.util.List;
 
 public class MainViewModel extends ViewModel {
 
-    private MutableLiveData<List<String>> stringLiveData;
+    private final MutableLiveData<List<String>> stringLiveData;
 
     List<String> originalList;
 
@@ -32,6 +32,8 @@ public class MainViewModel extends ViewModel {
 
 //        stringLiveData.getValue().add("Hello World!");
         originalList.add("Hello World!");
+
+        stringLiveData.setValue(originalList);
 
     }
 
