@@ -99,6 +99,8 @@ public class MainFragment extends Fragment {
                 liveDataAdapter.submitList(strings);
                 liveDataAdapter.notifyDataSetChanged();
 
+//                recyclerView2.smoothScrollToPosition(recyclerView2.getAdapter().getItemCount() - 1);
+
                 recyclerView2.smoothScrollToPosition(strings.size() - 1);
             }
         });
