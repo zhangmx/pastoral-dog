@@ -9,6 +9,13 @@ This is a Android project, used to learn Android basic knowledge.
 > https://guides.codepath.com/android/managing-threads-and-custom-services#stopping-the-handlerthread
 > https://github.com/guenodz/livedata-recyclerview-sample (Helper class)
 
+## Project details:
+
+
+* tryfragment: some recyclerview and fragment examples
+* tryservice: some service examples
+
+
 ## other projects:
 
 netty demos:
