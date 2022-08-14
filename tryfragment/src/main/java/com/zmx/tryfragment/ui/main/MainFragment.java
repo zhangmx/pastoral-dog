@@ -9,6 +9,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -53,6 +54,8 @@ public class MainFragment extends Fragment {
         MainAdapter mainAdapter = new MainAdapter(mViewModel.getOriginalList());
         LinearLayoutManager llm = new LinearLayoutManager(getContext());
         llm.setOrientation(LinearLayoutManager.VERTICAL);
+        // scroll to bottom at first show (update not working)
+        llm.setStackFromEnd(true);
         binding.recyclerView.setLayoutManager(llm);
         binding.recyclerView.setAdapter(mainAdapter);
 
@@ -71,8 +74,9 @@ public class MainFragment extends Fragment {
         });
 
         ListDataAdapter liveDataAdapter = new ListDataAdapter();
-        binding.recyclerView2.setHasFixedSize(true);
-        binding.recyclerView2.setAdapter(liveDataAdapter);
+        RecyclerView recyclerView2 = binding.recyclerView2;
+        recyclerView2.setHasFixedSize(true);
+        recyclerView2.setAdapter(liveDataAdapter);
 //        mViewModel.getList().observe(getViewLifecycleOwner(), newList -> {
 //            Log.e("MainFragment", "mViewModel observe");
 //            liveDataAdapter.submitList(null);
@@ -94,6 +98,8 @@ public class MainFragment extends Fragment {
                 Log.e("MainFragment", "mViewModel observe");
                 liveDataAdapter.submitList(strings);
                 liveDataAdapter.notifyDataSetChanged();
+
+                recyclerView2.smoothScrollToPosition(strings.size() - 1);
             }
         });
         liveDataAdapter.setOnItemClickListener(new ListDataAdapter.OnItemClickListener() {
