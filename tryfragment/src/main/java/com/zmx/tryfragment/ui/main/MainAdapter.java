@@ -20,7 +20,7 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.MainViewHolder
 
     public MainAdapter(List<String> value) {
         mList = value;
-//        setHasStableIds(true);
+        setHasStableIds(true);
     }
 
     @NonNull
@@ -40,6 +40,7 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.MainViewHolder
     @Override
     public int getItemCount() {
         return this.mList.size();
+//        return mList.size();
     }
 
 //    @SuppressLint("NotifyDataSetChanged")
@@ -51,17 +52,18 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.MainViewHolder
 
     static class MainViewHolder extends RecyclerView.ViewHolder {
 
+//        final ItemManBinding binding;
+
         public TextView textView;
         public TextView textView2;
 
         public MainViewHolder(ItemManBinding binding) {
             super(binding.getRoot());
-
+//            this.binding = binding;
             textView = binding.textView;
             textView2 = binding.textView2;
         }
     }
-
 
 
 }

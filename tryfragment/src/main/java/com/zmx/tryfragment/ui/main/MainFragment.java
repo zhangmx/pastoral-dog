@@ -113,6 +113,10 @@ public class MainFragment extends Fragment {
 //            }
 //        });
 
+
+        binding.recyclerView3.setAdapter(mainAdapter);
+
+
     }
 
     @Override
