@@ -12,8 +12,7 @@ import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.ListAdapter;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.zmx.tryfragment.databinding.ItemManBinding;
-
+import com.zmx.tryfragment.databinding.ItemLineBinding;
 import java.util.List;
 
 // String to Note Object
@@ -51,7 +50,7 @@ public class ListDataAdapter extends ListAdapter<String, ListDataAdapter.MainVie
     @NonNull
     @Override
     public MainViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        ItemManBinding itemManBinding = ItemManBinding.inflate(LayoutInflater.from(parent.getContext()), parent, false);
+        ItemLineBinding itemManBinding = ItemLineBinding.inflate(LayoutInflater.from(parent.getContext()), parent, false);
         return new MainViewHolder(itemManBinding);
     }
 
@@ -76,12 +75,12 @@ public class ListDataAdapter extends ListAdapter<String, ListDataAdapter.MainVie
     }
 
     public class MainViewHolder extends androidx.recyclerview.widget.RecyclerView.ViewHolder {
-        public final ItemManBinding itemManBinding;
+        public final ItemLineBinding itemManBinding;
 
         public TextView textView;
         public TextView textView2;
 
-        public MainViewHolder(ItemManBinding binding) {
+        public MainViewHolder(ItemLineBinding binding) {
             super(binding.getRoot());
             this.itemManBinding = binding;
             textView = binding.textView;
