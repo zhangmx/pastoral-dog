@@ -45,7 +45,7 @@ public class BlankFragment extends Fragment {
     private MyService myService;
     private boolean isBound = false;
 
-    private ServiceConnection serviceConnection = new ServiceConnection() {
+    private final ServiceConnection serviceConnection = new ServiceConnection() {
         @Override
         public void onServiceConnected(ComponentName name, IBinder service) {
 //            Messenger messenger = new Messenger(service);
