@@ -80,6 +80,10 @@ public class BlankFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
         binding = FragmentBlankBinding.inflate(inflater, container, false);
+
+        requireContext().registerReceiver(
+                receiver, new IntentFilter("GET_SIGNAL_STRENGTH"));
+
         return binding.getRoot();
     }
 
@@ -181,6 +185,33 @@ public class BlankFragment extends Fragment {
         LocalBroadcastManager.getInstance(requireContext()).unregisterReceiver(mMessageReceiver );
         super.onPause();
         Log.i("onPause", "onPause: ");
+    }
+
+
+    WifiLevelReceiver receiver = new WifiLevelReceiver();
+
+    static class WifiLevelReceiver extends BroadcastReceiver {
+
+        @Override
+        public void onReceive(Context context, Intent intent) {
+
+            if(intent.getAction().equals("GET_SIGNAL_STRENGTH"))
+            {
+//                int level = intent.getIntExtra("LEVEL_DATA",0);
+                String level = intent.getStringExtra("LEVEL_DATA");
+                // Show it in GraphView
+                Log.i("WifiLevelReceiver", "onReceive: " + level);
+            }
+        }
+
+    }
+
+
+    @Override
+    public void onStop()
+    {
+        super.onStop();
+        LocalBroadcastManager.getInstance(requireContext()).unregisterReceiver(receiver);           //<-- Unregister to avoid memoryleak
     }
 
     @Override

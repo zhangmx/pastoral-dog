@@ -127,6 +127,8 @@ public class MyService extends Service {
 
         sendMessageToActivity(new Location("provider"),"message from service");
 
+        sendDataToActivity();
+
     }
 
     public final class MyServiceBinder extends Binder {
