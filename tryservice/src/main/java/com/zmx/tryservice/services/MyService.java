@@ -4,6 +4,7 @@ import android.app.Service;
 import android.content.ComponentName;
 import android.content.Intent;
 import android.content.ServiceConnection;
+import android.location.Location;
 import android.os.Binder;
 import android.os.Bundle;
 import android.os.Handler;
@@ -12,10 +13,13 @@ import android.os.IBinder;
 import android.os.Looper;
 import android.os.Message;
 import android.os.Messenger;
+import android.os.Parcelable;
 import android.os.Process;
 import android.os.RemoteException;
 import android.util.Log;
 import android.widget.Toast;
+
+import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
 import java.util.Random;
 
@@ -119,6 +123,10 @@ public class MyService extends Service {
             }
 
         }
+
+
+        sendMessageToActivity(new Location("provider"),"message from service");
+
     }
 
     public final class MyServiceBinder extends Binder {
@@ -178,6 +186,28 @@ public class MyService extends Service {
             // the service in the middle of handling another job
 //            stopSelf(msg.arg1);
         }
+    }
+
+
+
+    private void sendMessageToActivity(Location l, String msg) {
+        Intent intent = new Intent("GPSLocationUpdates");
+        // You can also include some extra data.
+        intent.putExtra("Status", msg);
+        Bundle b = new Bundle();
+        b.putParcelable("Location", l);
+        intent.putExtra("Location", b);
+//        LocalBroadcastManager.getInstance(this).sendBroadcast(intent);
+        LocalBroadcastManager.getInstance(MyService.this).sendBroadcast(intent);
+    }
+
+    private void sendDataToActivity()
+    {
+        Intent sendLevel = new Intent();
+        sendLevel.setAction("GET_SIGNAL_STRENGTH");
+        sendLevel.putExtra( "LEVEL_DATA","Strength_Value");
+        sendBroadcast(sendLevel);
+
     }
 
     public static class MyServiceConnection implements ServiceConnection {

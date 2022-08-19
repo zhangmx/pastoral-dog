@@ -2,15 +2,19 @@ package com.zmx.tryservice.ui.main;
 
 import androidx.lifecycle.ViewModelProvider;
 
+import android.content.BroadcastReceiver;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.ServiceConnection;
+import android.location.Location;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
 import android.os.Handler;
 import android.os.IBinder;
@@ -132,8 +136,34 @@ public class BlankFragment extends Fragment {
             }
         });
 
+
+        LocalBroadcastManager.getInstance(requireContext()).registerReceiver(
+                mMessageReceiver, new IntentFilter("GPSLocationUpdates"));
     }
 
+    Location lastKnownLoc;
+    private final BroadcastReceiver mMessageReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            // Get extra data included in the Intent
+            String message = intent.getStringExtra("Status");
+            Bundle b = intent.getBundleExtra("Location");
+            lastKnownLoc = (Location) b.getParcelable("Location");
+            if (lastKnownLoc != null) {
+                Log.i("mMessageReceiver", "onReceive: " + message + " "
+                        + lastKnownLoc.getLatitude() + " " + lastKnownLoc.getLongitude());
+//                tvLatitude.setText(String.valueOf(lastKnownLoc.getLatitude()));
+//                tvLongitude
+//                        .setText(String.valueOf(lastKnownLoc.getLongitude()));
+//                tvAccuracy.setText(String.valueOf(lastKnownLoc.getAccuracy()));
+//                tvTimestamp.setText((new Date(lastKnownLoc.getTime())
+//                        .toString()));
+//                tvProvider.setText(lastKnownLoc.getProvider());
+            }
+//            tvStatus.setText(message);
+            // Toast.makeText(context, message, Toast.LENGTH_SHORT).show();
+        }
+    };
     @Override
     public void onStart() {
         super.onStart();
@@ -148,6 +178,7 @@ public class BlankFragment extends Fragment {
 
     @Override
     public void onPause() {
+        LocalBroadcastManager.getInstance(requireContext()).unregisterReceiver(mMessageReceiver );
         super.onPause();
         Log.i("onPause", "onPause: ");
     }
