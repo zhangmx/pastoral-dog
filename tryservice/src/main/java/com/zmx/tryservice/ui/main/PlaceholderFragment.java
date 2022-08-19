@@ -1,5 +1,6 @@
 package com.zmx.tryservice.ui.main;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -8,6 +9,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -16,6 +18,7 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.zmx.tryservice.databinding.FragmentMainBinding;
 import com.zmx.tryservice.services.MyIntentService;
+import com.zmx.tryservice.servicetest.ClassicService;
 
 /**
  * A placeholder fragment containing a simple view.
@@ -78,6 +81,16 @@ public class PlaceholderFragment extends Fragment {
         binding.button.setOnClickListener((view)->{
             Messenger messenger = new Messenger(handler);
             MyIntentService.startActionBaz(getContext(), "hello","world", messenger);
+        });
+
+        final Button startServiceBtn = binding.startClassicService;
+        startServiceBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(requireContext(), ClassicService.class);
+                intent.putExtra("Message", "From outer space.");
+                requireContext().startService(intent);
+            }
         });
 
         return root;
