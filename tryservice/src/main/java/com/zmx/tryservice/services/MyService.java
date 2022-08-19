@@ -13,6 +13,7 @@ import android.os.Looper;
 import android.os.Message;
 import android.os.Messenger;
 import android.os.Process;
+import android.os.RemoteException;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -27,6 +28,7 @@ public class MyService extends Service {
 
     private final IBinder mBinder = new MyServiceBinder();
 
+    Messenger messenger = null;
     Random r;
     int i;
 
@@ -94,6 +96,29 @@ public class MyService extends Service {
     public void doWork(String message) {
         Log.e("MyService", "doWork:" + message);
         i = 0;
+
+        if (messenger != null) {
+//            Message msg = Message.obtain(null, MSG_REGISTER_CLIENT);
+//            Bundle bundle = new Bundle();
+//            bundle.putString("message", message);
+//            msg.setData(bundle);
+//            try {
+//                messenger.send(msg);
+//            } catch (RemoteException e) {
+//                e.printStackTrace();
+//            }
+
+            try {
+                Message mymsg = Message.obtain();
+                mymsg.obj = message + " xxxx ";
+//            messenger.send(Message.obtain(null, MSG_REGISTER_CLIENT, message));
+                messenger.send(mymsg);
+
+            } catch (RemoteException e) {
+                e.printStackTrace();
+            }
+
+        }
     }
 
     public final class MyServiceBinder extends Binder {
@@ -109,18 +134,16 @@ public class MyService extends Service {
 
         @Override
         public void handleMessage(Message msg) {
-            // log process id
-            Log.e("MyService", "process id: " + Process.myPid());
-            // log thread id
-            Log.e("MyService", "thread id: " + Thread.currentThread().getId());
-
-
             Log.i("MyService", " MyServiceHandler handleMessage Called.");
+            // log process id
+            Log.i("MyService", "process id: " + Process.myPid());
+            // log thread id
+            Log.i("MyService", "thread id: " + Thread.currentThread().getId());
 
             Bundle extras = msg.getData();
 
             int times = 0;
-            Messenger messenger = null;
+
             if (extras != null) {
                 times = extras.getInt("times", 0);
                 messenger = (Messenger) extras.get("MESSENGER");

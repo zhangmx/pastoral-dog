@@ -16,6 +16,7 @@ import android.os.Handler;
 import android.os.IBinder;
 import android.os.Message;
 import android.os.Messenger;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -90,11 +91,15 @@ public class BlankFragment extends Fragment {
         startServiceBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                Log.i("MyService", "startServiceBtn onClick Called.");
+
                 Intent number5 = new Intent(getContext(), MyService.class);
                 number5.putExtra("times", 5);
                 Messenger messenger = new Messenger(handler);
                 number5.putExtra("MESSENGER", messenger);
-                getContext().startService(number5);
+//                getContext().startService(number5);
+                requireContext().startService(number5);
             }
         });
 
@@ -102,13 +107,17 @@ public class BlankFragment extends Fragment {
         bindServiceBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                Log.i("bindServiceBtn", "onClick: ");
+
                 Intent number5 = new Intent(getContext(), MyService.class);
                 number5.putExtra("times", 5);
                 Messenger messenger = new Messenger(handler);
                 number5.putExtra("MESSENGER", messenger);
 
-                getContext().bindService(number5, serviceConnection, Context.BIND_AUTO_CREATE);
+//                getContext().bindService(number5, serviceConnection, Context.BIND_AUTO_CREATE);
 //                getContext().bindService(number5, new MyService.MyServiceConnection(), 0);
+                requireContext().bindService(number5, serviceConnection, Context.BIND_AUTO_CREATE);
             }
         });
 
@@ -118,18 +127,38 @@ public class BlankFragment extends Fragment {
             public void onClick(View v) {
 
                 String message = binding.messageEditText.getText().toString().trim();
-
+                Log.i("doServiceWorkBtn", "onClick: " + message);
                 myService.doWork(message);
-
-
-//                Intent number5 = new Intent(getContext(), MyService.class);
-//                number5.putExtra("times", 5);
-//                Messenger messenger = new Messenger(handler);
-//                number5.putExtra("MESSENGER", messenger);
-//                getContext().startService(number5);
             }
         });
 
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        Log.i("onStart", "onStart: ");
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        Log.i("onResume", "onResume: ");
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        Log.i("onPause", "onPause: ");
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        if (isBound) {
+//            getContext().unbindService(serviceConnection);
+            requireContext().unbindService(serviceConnection);
+        }
     }
 
 }
