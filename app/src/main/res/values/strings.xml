@@ -1,5 +1,11 @@
 <resources>
     <string name="app_name">MyFullScreen</string>
     <string name="dummy_button">Dummy Button</string>
-    <string name="dummy_content">DUMMY\nCONTENT</string>
+    <string name="textview">TextView</string>
+    <string name="backup">Backup</string>
+    <string name="delete">Delete</string>
+    <string name="settings">Settings</string>
+    <string name="long_text">this is very long text</string>
+    <string name="just_test">just test</string>
+    <string name="dummy_content">DUMMY CONTENT</string>
 </resources>

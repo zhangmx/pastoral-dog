@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">MyFullScreen</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY CONTENT</string>
+    <string name="textview">TextView</string>
+    <string name="backup">Backup</string>
+    <string name="delete">Delete</string>
+    <string name="settings">Settings</string>
+    <string name="long_text">这个文字很长</string>
+    <string name="just_test">just test</string>
+</resources>

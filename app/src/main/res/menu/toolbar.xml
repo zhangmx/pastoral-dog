@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/action_backup"
+        android:icon="@android:drawable/stat_notify_sdcard"
+        android:title="@string/backup"
+        app:showAsAction="always" />
+    <item
+        android:id="@+id/action_restore"
+        android:icon="@android:drawable/ic_delete"
+        android:title="@string/delete"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/action_settings"
+        android:icon="@android:drawable/ic_delete"
+        android:title="@string/settings"
+        app:showAsAction="ifRoom" />
+</menu>

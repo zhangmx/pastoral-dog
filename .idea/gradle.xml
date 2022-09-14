@@ -7,16 +7,34 @@
         <option name="testRunner" value="GRADLE" />
         <option name="distributionType" value="DEFAULT_WRAPPED" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
-        <option name="gradleHome" value="$PROJECT_DIR$/../../../develop/gradle-7.4.2" />
+        <option name="gradleHome" value="$USER_HOME$/develop/gradle-7.4.2" />
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/androidlib" />
             <option value="$PROJECT_DIR$/app" />
+            <option value="$PROJECT_DIR$/kotlinlibrary" />
             <option value="$PROJECT_DIR$/libkotlin" />
             <option value="$PROJECT_DIR$/loginpage" />
+            <option value="$PROJECT_DIR$/moduleviewmodel" />
             <option value="$PROJECT_DIR$/mylibrary" />
             <option value="$PROJECT_DIR$/natty" />
+            <option value="$PROJECT_DIR$/trybase" />
+            <option value="$PROJECT_DIR$/trybottomnav" />
+            <option value="$PROJECT_DIR$/tryempty" />
+            <option value="$PROJECT_DIR$/tryfragment" />
+            <option value="$PROJECT_DIR$/tryfullscreen" />
+            <option value="$PROJECT_DIR$/tryktbasem3" />
+            <option value="$PROJECT_DIR$/tryktcompose" />
+            <option value="$PROJECT_DIR$/tryktcomposem3" />
+            <option value="$PROJECT_DIR$/trylogin" />
+            <option value="$PROJECT_DIR$/trymasterdetail" />
+            <option value="$PROJECT_DIR$/trynavigation" />
+            <option value="$PROJECT_DIR$/tryresponsive" />
+            <option value="$PROJECT_DIR$/tryscrollingactivity" />
+            <option value="$PROJECT_DIR$/tryservice" />
+            <option value="$PROJECT_DIR$/trysettings" />
+            <option value="$PROJECT_DIR$/trytabview" />
           </set>
         </option>
       </GradleProjectSettings>
