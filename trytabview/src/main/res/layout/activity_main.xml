@@ -21,6 +21,16 @@
             android:text="@string/app_name"
             android:textAppearance="@style/TextAppearance.Widget.AppCompat.Toolbar.Title" />
 
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/music_play_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="Goto other tab"
+            android:minWidth="@dimen/mtrl_min_touch_target_size"
+            android:text="xxx"
+            app:icon="@drawable/ic_baseline_invert_colors_24"
+            app:iconPadding="0dp" />
+
         <com.google.android.material.tabs.TabLayout
             android:id="@+id/tabs"
             android:layout_width="match_parent"

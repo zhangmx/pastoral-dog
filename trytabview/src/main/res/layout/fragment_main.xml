@@ -7,6 +7,53 @@
     android:layout_height="match_parent"
     tools:context=".ui.main.PlaceholderFragment">
 
+<!--    <com.google.android.material.tabs.TabLayout-->
+<!--        style="@style/Widget.Design.TabLayout"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_gravity="center_horizontal"-->
+
+<!--        app:tabIndicatorHeight="4dp"-->
+
+<!--        app:tabInlineLabel="true"-->
+<!--        app:tabIndicatorFullWidth="false"-->
+
+<!--        android:background="@color/white"-->
+
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toEndOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="parent"-->
+<!--        android:rotation="90">-->
+
+<!--    <com.google.android.material.tabs.TabItem-->
+<!--        android:id="@+id/tabItem"-->
+<!--        android:icon="@drawable/ic_baseline_add_24"-->
+<!--        android:text="cat_tabs_label_shopping" />-->
+<!--    <com.google.android.material.tabs.TabItem-->
+<!--        android:icon="@drawable/ic_baseline_invert_colors_24"-->
+<!--        android:text="cat_tabs_label_news"/>-->
+<!--    <com.google.android.material.tabs.TabItem-->
+<!--        android:icon="@drawable/ic_baseline_tab_24"-->
+<!--        android:text="cat_tabs_label_maps"/>-->
+
+<!--    </com.google.android.material.tabs.TabLayout>-->
+
+
+<!--    app:layout_constraintStart_toEndOf="parent"  导致只显示一半  -->
+
+    <com.google.android.material.navigationrail.NavigationRailView
+        android:id="@+id/cat_navigation_rail"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+
+        android:fitsSystemWindows="false"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+
+        app:menu="@menu/navigation_rail_menu" />
+
     <TextView
         android:id="@+id/section_label"
         android:layout_width="wrap_content"
