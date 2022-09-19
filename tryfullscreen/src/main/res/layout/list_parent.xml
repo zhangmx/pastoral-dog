@@ -13,7 +13,7 @@
         android:layout_height="wrap_content"
         tools:text="Parent List Item"
         android:textStyle="bold"
-        android:textSize="16dp"
+        android:textSize="16sp"
         android:textColor="#FFFFFF"
         android:padding="12dp"/>
 
