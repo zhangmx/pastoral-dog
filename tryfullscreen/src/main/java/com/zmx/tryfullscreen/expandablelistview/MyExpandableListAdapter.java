@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
 import android.widget.TextView;
 
+import com.zmx.tryfullscreen.R;
 import com.zmx.tryfullscreen.databinding.ListChildBinding;
 import com.zmx.tryfullscreen.databinding.ListParentBinding;
 
@@ -24,8 +25,8 @@ public class MyExpandableListAdapter extends BaseExpandableListAdapter {
     private List<String> mParents;
     private Map<String, List<String>> mChildrenMap;
 
-    private ListParentBinding listParentBinding;
-    private ListChildBinding listChildBinding;
+//    private ListParentBinding listParentBinding;
+//    private ListChildBinding listChildBinding;
 
     /**
      * Constructor
@@ -38,8 +39,9 @@ public class MyExpandableListAdapter extends BaseExpandableListAdapter {
         this.mParents = parents;
         this.mChildrenMap = childrenMap;
 
-        listChildBinding = ListChildBinding.inflate(LayoutInflater.from(context));
-        listParentBinding = ListParentBinding.inflate(LayoutInflater.from(context));
+        // 这里不能用全局变量，因为这里的context是activity的context，而全局变量是application的context
+//        listChildBinding = ListChildBinding.inflate(LayoutInflater.from(context));
+//        listParentBinding = ListParentBinding.inflate(LayoutInflater.from(context));
     }
 
     /**
@@ -117,17 +119,21 @@ public class MyExpandableListAdapter extends BaseExpandableListAdapter {
         // Get the value of the parent item
         String parentValue = (String) getGroup(groupPosition);
 
+        ListParentBinding binding = ListParentBinding.inflate(LayoutInflater.from(mContext), parent, false);
+
         // Create the convertView object if it is null
         if(convertView == null) {
             // Inflate the view in our list_parent.xml
-            LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(mContext.LAYOUT_INFLATER_SERVICE);
+//            LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(mContext.LAYOUT_INFLATER_SERVICE);
 //            convertView = inflater.inflate(R.layout.list_parent, null);
-            convertView = listParentBinding.getRoot();
+//            convertView = listParentBinding.getRoot();
+            convertView = binding.getRoot();
         }
 
         // Update the TextView in our convertView (based on the list_parent.xml)
 //        TextView parentTextView = (TextView) convertView.findViewById(R.id.list_item_parent);
-        TextView parentTextView = listParentBinding.listItemParent;
+//        TextView parentTextView = listParentBinding.listItemParent;
+        TextView parentTextView = binding.listItemParent;
         parentTextView.setText(parentValue);
 
         return convertView;
@@ -148,19 +154,26 @@ public class MyExpandableListAdapter extends BaseExpandableListAdapter {
         // get the value of the child item, in the parent (group)
         String childValue = (String) getChild(groupPosition, childPosition);
 
+        ListChildBinding binding = ListChildBinding.inflate(LayoutInflater.from(mContext), parent, false);
+
+
         // Create the convertView object if it is null
         if(convertView == null) {
             // Inflate the view in our list_parent.xml
 //            LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(mContext.LAYOUT_INFLATER_SERVICE);
 //            convertView = inflater.inflate(R.layout.list_child, null);
-            convertView = listChildBinding.getRoot();
+//            convertView = listChildBinding.getRoot();
+
+            convertView = binding.getRoot();
+
         }
 
         // Update the TextView in our convertView (based on the list_child.xml)
 //        TextView childTextView = (TextView) convertView.findViewById(R.id.list_item_child);
 //        childTextView.setText(childValue);
 
-        TextView childTextView = listChildBinding.listItemChild;
+//        TextView childTextView = listChildBinding.listItemChild;
+        TextView childTextView = binding.listItemChild;
         childTextView.setText(childValue);
 
         return convertView;

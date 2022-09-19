@@ -5,6 +5,7 @@ import android.annotation.SuppressLint;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
@@ -14,6 +15,7 @@ import android.view.View;
 import android.view.WindowInsets;
 
 import com.zmx.tryfullscreen.databinding.ActivityFullscreenBinding;
+import com.zmx.tryfullscreen.expandablelistview.MainActivity;
 
 /**
  * An example full-screen activity that shows and hides the system UI (i.e.
@@ -99,9 +101,20 @@ public class FullscreenActivity extends AppCompatActivity {
                 default:
                     break;
             }
+            mGotoMainActivityRunnable.run();
             return false;
         }
     };
+
+    private final Runnable mGotoMainActivityRunnable = new  Runnable() {
+        @Override
+        public void run() {
+            finish();
+            Intent intent = new Intent(FullscreenActivity.this, MainActivity.class);
+            startActivity(intent);
+        }
+    };
+
     private ActivityFullscreenBinding binding;
 
     @Override

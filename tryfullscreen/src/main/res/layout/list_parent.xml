@@ -3,7 +3,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:padding="8dp"
+    android:background="#000000">
 
     <TextView
         android:id="@+id/list_item_parent"
@@ -12,6 +14,7 @@
         tools:text="Parent List Item"
         android:textStyle="bold"
         android:textSize="16dp"
+        android:textColor="#FFFFFF"
         android:padding="12dp"/>
 
 </LinearLayout>

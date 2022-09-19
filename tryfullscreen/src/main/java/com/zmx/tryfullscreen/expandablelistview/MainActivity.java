@@ -25,10 +25,10 @@ public class MainActivity extends AppCompatActivity {
 
     List<String> parents; // A list of parents (strings)
     Map<String, List<String>> childrenMap; // An object that maps keys to values.
-            // A map cannot contain duplicate keys; each key can map to at most one value
-            // Map Documentation: https://developer.android.com/reference/java/util/Map.html
-            // HashMap Documentation: https://developer.android.com/reference/java/util/HashMap.html
-            // Hashtable Documentation: https://developer.android.com/reference/java/util/Hashtable.html
+    // A map cannot contain duplicate keys; each key can map to at most one value
+    // Map Documentation: https://developer.android.com/reference/java/util/Map.html
+    // HashMap Documentation: https://developer.android.com/reference/java/util/HashMap.html
+    // Hashtable Documentation: https://developer.android.com/reference/java/util/Hashtable.html
 
     private ActivityMainBinding binding;
 
@@ -55,6 +55,42 @@ public class MainActivity extends AppCompatActivity {
 
         // Set the value in the ExpandableListView
         expandableListView.setAdapter(expandableListAdapter);
+
+
+        // Listview Group click listener
+        expandableListView.setOnGroupClickListener(new ExpandableListView.OnGroupClickListener() {
+
+            @Override
+            public boolean onGroupClick(ExpandableListView parent, View v,
+                                        int groupPosition, long id) {
+                Toast.makeText(getApplicationContext(), "Group Clicked " + parents.get(groupPosition), Toast.LENGTH_SHORT)
+                        .show();
+                return false;
+            }
+        });
+
+        // Listview Group expanded listener
+        expandableListView.setOnGroupExpandListener(new ExpandableListView.OnGroupExpandListener() {
+
+            @Override
+            public void onGroupExpand(int groupPosition) {
+                Toast.makeText(getApplicationContext(), parents.get(groupPosition) + " Expanded", Toast.LENGTH_SHORT)
+                        .show();
+            }
+        });
+
+        // Listview Group collasped listener
+        expandableListView.setOnGroupCollapseListener(new ExpandableListView.OnGroupCollapseListener() {
+
+            @Override
+            public void onGroupCollapse(int groupPosition) {
+                Toast.makeText(getApplicationContext(), parents.get(groupPosition) + " Collapsed", Toast.LENGTH_SHORT)
+                        .show();
+
+            }
+        });
+
+
 
         /** Set a listener on the child elements - show toast as an example */
         expandableListView.setOnChildClickListener(new ExpandableListView.OnChildClickListener() {
@@ -98,11 +134,11 @@ public class MainActivity extends AppCompatActivity {
 
         // Associate children with parents using the childrenMap HashMap
         // Associate susanChildren with "Parent - Susan"
-        childrenMap.put(parents.get(0),susanChildren);
+        childrenMap.put(parents.get(0), susanChildren);
         // Jeff
-        childrenMap.put(parents.get(1),jeffChildren);
+        childrenMap.put(parents.get(1), jeffChildren);
         // Simon
-        childrenMap.put(parents.get(2),simonChildren);
+        childrenMap.put(parents.get(2), simonChildren);
 
 
     }
