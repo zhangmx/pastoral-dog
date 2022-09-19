@@ -41,6 +41,7 @@ android {
 //            }
 //        }
     }
+    namespace 'com.zmx.trybase'
 }
 
 dependencies {
