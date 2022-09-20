@@ -1,24 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     tools:showIn="navigation_view">
 
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/nav_transform"
-            android:icon="@drawable/ic_camera_black_24dp"
+            app:actionLayout="@layout/menu_item"
+            android:checkable="true"
+            android:checked="true"
+
+            android:menuCategory="container"
             android:title="@string/menu_transform" />
         <item
             android:id="@+id/nav_reflow"
             android:icon="@drawable/ic_gallery_black_24dp"
-            android:title="@string/menu_reflow" />
+            android:title="@string/menu_reflow"
+
+            />
         <item
             android:id="@+id/nav_slideshow"
             android:icon="@drawable/ic_slideshow_black_24dp"
-            android:title="@string/menu_slideshow" />
+            android:title="@string/menu_slideshow"
+            app:actionViewClass="android.widget.TextView" />
         <item
             android:id="@+id/nav_settings"
             android:icon="@drawable/ic_settings_black_24dp"
             android:title="@string/menu_settings" />
+
     </group>
 </menu>

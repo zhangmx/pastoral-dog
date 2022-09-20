@@ -11,7 +11,13 @@
         android:id="@+id/nav_view"
         android:layout_width="256dp"
         android:layout_height="match_parent"
+        android:layout_gravity="right"
+        android:fitsSystemWindows="true"
+        android:layoutDirection="rtl"
+        android:textDirection="rtl"
         app:headerLayout="@layout/nav_header_main"
+        app:itemIconPadding="49dp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:menu="@menu/navigation_drawer" />
