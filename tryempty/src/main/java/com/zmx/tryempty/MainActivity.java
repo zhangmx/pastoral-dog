@@ -4,7 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
-import com.zmx.tryempty.databinding.ActivityMainBinding;
+import com.zmx.tryempty.databinding.ActivityMainFragmentBinding;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -12,7 +12,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        ActivityMainBinding binding = ActivityMainBinding.inflate(getLayoutInflater());
+        ActivityMainFragmentBinding binding = ActivityMainFragmentBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
         if(savedInstanceState == null) {

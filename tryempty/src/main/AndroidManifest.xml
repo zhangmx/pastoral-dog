@@ -11,11 +11,29 @@
         <activity
             android:name=".MainActivity"
             android:exported="true">
+        </activity>
+
+        <activity
+            android:name=".viewPager2.MainActivity"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+
+        <activity
+            android:name=".viewPager2.views.ViewsSliderActivity"
+            android:exported="true"
+            android:label="@string/title_activity_views_slider"
+            android:theme="@style/AppTheme.FullScreen"
+            >
+        </activity>
+        <activity
+            android:name=".viewPager2.fragments.FragmentViewPagerActivity"
+            android:exported="true"
+            android:label="@string/title_fragment_slider">
         </activity>
     </application>
 
